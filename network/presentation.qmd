@@ -1,0 +1,83 @@
+---
+format:
+  revealjs: 
+    theme: [simple, custom.scss]
+    transition: slide
+footer: <https://correlaid.github.io/correlaidx-austria-education/>
+editor: visual
+logo: images/correl.png
+---
+
+##  {margin="0.6"}
+
+::: {style="margin-top: 150px;"}
+::: {fig-align="center"}
+::: nostretch
+![](images/correl_aus.png){fig-align="center"}
+:::
+:::
+:::
+
+::: {style="text-align: center; font-size:2em; color:#214f8f"}
+**R ggplot (2) - Maps**
+:::
+
+::: {style="text-align: center;"}
+Arne Langlet
+:::
+
+## Contents {.smaller}
+
+::: incremental
+-   Administrative stuff
+-   About me
+-   Introduction to the concept of networks in R
+-   Build a network based on twitter data
+-   Visualize network in interactive way
+:::
+
+## Administrative
+
+::: incremental
+-   all code and presentation can be found on GitHub: <https://github.com/CorrelAid/austriaWorkshops>
+-   Details on workshops can be found on our website: <https://correlaid.github.io/correlaidx-austria-education/>
+:::
+
+## About me {.smaller}
+
+### Education / Work
+
+::: incremental
+-   BA European Studies in Maastricht
+-   MA International Relations in Berlin
+-   Student job at SCI Verkehr consulting & German Institute for Economic Research
+-   PhD at MARIPOLDATA Project at Uni Wien
+:::
+
+## Networks {.smaller}
+
+Networks are everywhere
+
+Social network analysis essentially seeks to explain outcomes by plotting, measuring and interpreting the links between nodes and as such focuses on the structural level of systems (Jansen, 2006).
+
+Good books to start
+
+::: {style="margin-bottom: 50px;"}
+::: {layout="[[1,1,1,1,1], [1,1,1,1,1]]"}
+![](images/Download-01.jpg)
+
+![](images/Download%20(1).jpg)
+:::
+:::
+
+##  {.smaller}
+
+::: {layout="[[1,1,1,1,1]]"}
+## Data: Tweets containing #bundespräsident {.smaller}
+:::
+
+. . .
+
+##  {.smaller}
+
+##  {.smaller}

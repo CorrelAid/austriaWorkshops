@@ -1,61 +1,157 @@
+### COrrelAidX Austria 
+### Network visualization
+### Arne Langlet, 04.10.2022
 
-### vis network
+# clean environment
+gc()
+rm(list = ls())
 
+
+# set working directory
+setwd("C:/Users/arnel/OneDrive/Desktop/git projects/correlaid_wien/austriaWorkshops/network")
+
+# load packages
+library(dplyr)
+library(tidyverse)
+library(readxl)
+library(data.table)
+library(zoo)
+library(lubridate)
+library(openxlsx)
+library(stringr)
+library(readr)
+library(tidytext)
+library(igraph)
+library(kableExtra)
+library(tm)
+library(ggthemes)
+library(magrittr)
+library(igraph)
+library(rtweet)
+
+# read data
+hashtag_result <- read.csv("twitter_data.csv")
+
+
+
+head(hashtag_result)
+
+# some cleaning
+
+## all to lower 
+hashtag_result$tweet <- str_to_lower(hashtag_result$tweet)
+hashtag_result$username <- str_to_lower(hashtag_result$username)
+
+## delete NAs & duplicates
+hashtag_result <- filter(hashtag_result, !is.na(username))
+hashtag_result <- hashtag_result %>% distinct(created_at, tweet, author.id, .keep_all = TRUE)
+
+
+
+
+##create edgelist of authors and links that the tweets referred to with "@" as in references or retweets
+
+links <- str_extract_all(hashtag_result$tweet, "@\\w*\\b")
+links <- sapply(links, function(s) paste(s, collapse=';'))
+links <- gsub("[@]", "", links)
+df <- data.frame(cbind( hashtag_result$username, links))
+
+edgelist <- separate_rows(df, links, convert = TRUE)
+
+# delete tweets without references 
+edgelist <- filter(edgelist, links != "")
+
+
+
+
+# create weighted edgelist ()
+### create weights 
+
+edgelist_w <- as.data.frame(table(edgelist))
+edgelist_w <- filter(edgelist_w, Freq > 0)
+
+## name variables and set class
+colnames(edgelist_w) <- c("Source", "Target", "Weight")
+edgelist_w$Source <- as.character(edgelist_w$Source)
+edgelist_w$Target <- as.character(edgelist_w$Target)
+edgelist_w$Weight <- as.numeric(edgelist_w$Weight)
+
+
+## subset no self-reference (loops)
+edgelist_w <- subset(edgelist_w, !ifelse(edgelist_w$Source == edgelist_w$Target, TRUE, FALSE))
+
+
+## write network matrix with weigths
+write.csv(edgelist_w, "edgelist_weighted.csv", row.names = FALSE)
+
+## create network from matrix / dataframe and keep weights as numeric...
+net_mat <- as.data.frame(edgelist_w)
+net_weighted <- graph_from_data_frame(net_mat, directed = TRUE)
+
+
+
+## communities
+# clp <- cluster_walktrap(net_weighted)
+# 
+# V(net_weighted)$community <- clp$membership
+# length(unique((clp$membership)))
+# 
+# rain <- rainbow(42, alpha=.5)
+# V(net_weighted)$color <- rain[V(net_weighted)$community]
+
+
+### now the interactive networkw 
 library(visNetwork)
 
 
-
-
-
+net <- net_weighted
 nodes <- data.frame(id = V(net)$name)
 
 
 # add labels on nodes
-nodes$label <- ifelse(nodes$id %in% ha, "High Ambition\nCoalition",
-                      ifelse((nodes$id %in% temp_conflict$actor & ! (nodes$id %in% ha)), "Other States", V(net)$label))
-
-
-# add groups on nodes 
-nodes$group <- ifelse(nodes$id %in% temp_conflict$actor, 1, 0)
+nodes$label <- V(net)$name
 
 # size adding value
-#value = degree(net),          
-
-# control shape of nodes
-nodes$shape <- ifelse(nodes$group == 1, "circle", "square")
-
-# color
-nodes$color <- ifelse(V(net)$type == 1, "darkgrey", "lightgrey")
+nodes$size <- V(net_weighted)$in_degree          
 
 
 
 
+# create edge table
 
 el <- data.frame(get.edgelist(net))
-el$pro <- E(net)$pro
-
-
-
 
 edges <- data.frame(from = el$X1, to = el$X2,
                     
                     # add labels on edges                  
-                    label = ifelse(el$pro== 1, "opposition",
-                                   ifelse(el$pro == 2, "flexible",
-                                          ifelse(el$pro == 3, "support", "grey"))),
+                    label = c("reference"),
                     
                     # arrows
                     arrows = c("to"),
                     
-                    color = ifelse(edges$label== "opposition", "red",
-                                   ifelse(edges$label == "flexible", "yellow",
-                                          ifelse(edges$label== "support", "green", "grey"))))
+                    color = c("yellow"), 
+                    width = E(net_weighted)$Weight)
 
 
 
+# conditional attributes
+#edges$label <- ifelse(E(net_weighted)$Weight <= 3, "weak reference", "strong reference")
 
 
+# add groups on nodes 
 
+nodes$id
+
+presse <- c("derstandardat", "orf", "hartaberfair", "diepressecom", "ndr", "gi_presse", "tachlesnews", "kleinezeitung", "morgenpost")
+nodes$group <- ifelse(nodes$id %in% presse, 1, 0)
+
+# control shape of nodes
+nodes$shape <- ifelse(nodes$group == 1, "square", "dot")
+# do not use "circle" here because circle always has the label inside the shape
+
+# color by community 
+# nodes$color <- V(net_weighted)$color
+  
 
 
 
@@ -65,9 +161,9 @@ plot <- visNetwork(nodes, edges, height = "1000px", width = "100%") %>%
   visNodes(font = list (size = 25)) %>% 
   visIgraphLayout(layout = "layout_with_dh") %>% 
   visPhysics(stabilization = FALSE) %>%
-  visEdges(smooth = FALSE) %>%
-  visIgraphLayout()
-
+  visEdges(smooth = FALSE) 
+ 
 plot
 
-visSave(plot, file = "figure1_with high ambition.html")
+visSave(plot, file = "plot.html")
+
