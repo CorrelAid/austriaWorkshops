@@ -330,14 +330,14 @@
 <div class="nostretch">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/correl_aus.png"></p>
+<p><img data-src="images/correl_aus.png" width="458"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div style="text-align: center; font-size:2em; color:#214f8f">
-<p><strong>R ggplot (2) - Maps</strong></p>
+<p>Network visualization with R &amp; visNetwork</p>
 </div>
 <div style="text-align: center;">
 <p>Arne Langlet</p>
@@ -394,17 +394,68 @@
 </div>
 </div>
 </section>
-<section id="section-1" class="slide level2 smaller">
-<h2></h2>
-<div class="quarto-layout-panel">
-
+<section id="networks-1" class="slide level2 smaller">
+<h2>Networks</h2>
+<ul>
+<li><p>Oftentimes researched for communities (who is close)</p></li>
+<li><p>Centrality (degree, betweeness, closeness - e.g.&nbsp;opinion leaders)</p></li>
+<li><p>Structural positions (structural holes, bridge - e.g.&nbsp;gatekeepers, mediators)</p></li>
+<li><p>Overall network description (centralization, density, homophility)</p></li>
+</ul>
+</section>
+<section id="examples---twitter-networks" class="slide level2 smaller">
+<h2>Examples - Twitter networks</h2>
+<div>
+<p><img data-src="images/220719_screenshot_164434.png" width="799"></p>
 </div>
 </section>
-<section id="section-2" class="slide level2 smaller">
-<h2></h2>
+<section id="freer-interpretations" class="slide level2">
+<h2>“Freer” interpretations</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 100.0%;justify-content: center;">
+<figure>
+<p><a href="https://www.maripoldata.eu/un-oceans-conference-2022-bbnj-treaty/"><img data-src="images/figure1.png" style="width:70cm"></a></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="section-3" class="slide level2 smaller">
-<h2></h2>
+<section id="data" class="slide level2 smaller">
+<h2>Data:</h2>
+<p>240 Tweets containing “bundespräsident” between Sep 20-30</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  X    author.id                created_at geo           id lang like_count
+1 0 1.315014e+18 2022-09-29 18:39:10+00:00     1.575556e+18   de          1
+2 1 1.095053e+18 2022-09-29 18:35:07+00:00     1.575555e+18   de          0
+3 2 1.024915e+09 2022-09-29 18:26:05+00:00     1.575553e+18   de          0
+4 3 7.605444e+17 2022-09-29 18:08:53+00:00     1.575548e+18   de          0
+5 4 9.369293e+17 2022-09-29 17:53:13+00:00     1.575544e+18  qme          0
+6 5 1.437021e+18 2022-09-29 16:57:33+00:00     1.575530e+18   de          0
+  quote_count reply_count retweet_count              source
+1           0           0             0           Instagram
+2           0           0            17 Twitter for Android
+3           0           0            51     Twitter Web App
+4           0           0             0 Twitter for Android
+5           0           0             1     Twitter Web App
+6           0           0             0     Twitter Web App
+                                                                                                                                                                                                                                                                                                     tweet
+1                                                                                                                                                                                                                           💫Wer früh wählt wählt sicher!! #vdb #bundespräsident 🗿 https://t.co/yGuExfH1kY
+2                                                                                                                                                             RT @IliasUyar: In Kenntnis, dass die Aserbaidschanische Botschaft #Berlin mit Hassparolen gegen #Armenien plakatiert ist, hat #Bundespräsid…
+3                                                                                                                                                             RT @IliasUyar: Hi @AuswaertigesAmt, dem diplomatischen Niveau von #Aserbaidschan mag es entsprechen, ist es aber für Sie akzeptabel, wenn d…
+4 @morgenpost was will der volksfremde unnötige #bundespraesident #Steinmeier.lebt fett in einem Schloss,umgeben von Dienern,Köchen etc.\nhat später fette Pension!\nfür was?\nder hat 3, 4 unwichtige Aufgaben,die man umdeligieren kann&amp;amp;nix zu sagen.\nweg mit der zu teuren Kostenstelle!\n#Politik
+5                                                                                                                                                                                                          RT @jerzy_freitag: #Gendern #Bundespräsident\n\nhttps://t.co/rOStB9KHlT https://t.co/RMP1zBxaMM
+6                               Wann bestellt @vanderbellen @johannes_rauch zu sich und gibt ihm deutlich zu verstehen, dass er SEINE VERDAMMTE ARBEIT MACHEN SOLL?!?!? Und den Herrn #Polaschek am besten gleich dazu. #Rauch #Schulen #CovidIsntOver #LongCovid #Bundespräsident https://t.co/f5jzztsRv6
+        username                                              name
+1          HadlG Gabriele Hadl Grüne in Poertschach a. Woerthersee
+2      LastJens1                                          LastJens
+3    Suuyuki_Sui                                      Suuyuki 🏕️☕️🚩
+4     schenser21                                          Schenser
+5 DirkSchumann77                                     Dirk Schumann
+6     weitracher                              Ferdinand Weitracher</code></pre>
+</div>
+</div>
 
 <img src="images/correl.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://correlaid.github.io/correlaidx-austria-education/" class="uri">https://correlaid.github.io/correlaidx-austria-education/</a></p>
@@ -621,6 +672,48 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

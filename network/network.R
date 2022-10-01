@@ -47,8 +47,7 @@ hashtag_result <- filter(hashtag_result, !is.na(username))
 hashtag_result <- hashtag_result %>% distinct(created_at, tweet, author.id, .keep_all = TRUE)
 
 
-
-
+# build network:
 ##create edgelist of authors and links that the tweets referred to with "@" as in references or retweets
 
 links <- str_extract_all(hashtag_result$tweet, "@\\w*\\b")
@@ -58,15 +57,11 @@ df <- data.frame(cbind( hashtag_result$username, links))
 
 edgelist <- separate_rows(df, links, convert = TRUE)
 
-# delete tweets without references 
+## delete tweets without references 
 edgelist <- filter(edgelist, links != "")
 
 
-
-
-# create weighted edgelist ()
-### create weights 
-
+## create weights 
 edgelist_w <- as.data.frame(table(edgelist))
 edgelist_w <- filter(edgelist_w, Freq > 0)
 
@@ -85,34 +80,52 @@ edgelist_w <- subset(edgelist_w, !ifelse(edgelist_w$Source == edgelist_w$Target,
 write.csv(edgelist_w, "edgelist_weighted.csv", row.names = FALSE)
 
 ## create network from matrix / dataframe and keep weights as numeric...
-net_mat <- as.data.frame(edgelist_w)
-net_weighted <- graph_from_data_frame(net_mat, directed = TRUE)
+net_matrix <- as.data.frame(edgelist_w)
+net <- graph_from_data_frame(net_matrix, directed = TRUE)
 
+
+# have a look at network
+net
 
 
 ## communities
-# clp <- cluster_walktrap(net_weighted)
+# clp <- cluster_walktrap(net)
 # 
-# V(net_weighted)$community <- clp$membership
+# V(net)$community <- clp$membership
 # length(unique((clp$membership)))
 # 
 # rain <- rainbow(42, alpha=.5)
-# V(net_weighted)$color <- rain[V(net_weighted)$community]
+# V(net)$color <- rain[V(net)$community]
 
 
-### now the interactive networkw 
+## centrality
+#V(net)$degree <- degree(net, mode = "in")
+
+
+
+plot(net,
+     layout = layout_with_dh, 
+     #vertex.size = V(net)$degree,
+     vertex.label.cex = 1,
+     #vertex.color = V(net)$color,
+     edge.width = E(net)$Weight,
+     edge.arrow.size = .5)
+
+
+# now the interactive network
 library(visNetwork)
 
 
-net <- net_weighted
+## create node list
+
 nodes <- data.frame(id = V(net)$name)
 
 
-# add labels on nodes
+### add labels on nodes
 nodes$label <- V(net)$name
 
-# size adding value
-nodes$size <- V(net_weighted)$in_degree          
+### size adding value
+#nodes$size <- V(net)$degree          
 
 
 
@@ -130,27 +143,27 @@ edges <- data.frame(from = el$X1, to = el$X2,
                     arrows = c("to"),
                     
                     color = c("yellow"), 
-                    width = E(net_weighted)$Weight)
+                    width = E(net)$Weight)
 
 
 
 # conditional attributes
-#edges$label <- ifelse(E(net_weighted)$Weight <= 3, "weak reference", "strong reference")
+#edges$label <- ifelse(E(net)$Weight <= 3, "weak reference", "strong reference")
 
 
 # add groups on nodes 
 
-nodes$id
-
-presse <- c("derstandardat", "orf", "hartaberfair", "diepressecom", "ndr", "gi_presse", "tachlesnews", "kleinezeitung", "morgenpost")
-nodes$group <- ifelse(nodes$id %in% presse, 1, 0)
+# nodes$id
+# 
+# presse <- c("derstandardat", "orf", "hartaberfair", "diepressecom", "ndr", "gi_presse", "tachlesnews", "kleinezeitung", "morgenpost")
+# nodes$group <- ifelse(nodes$id %in% presse, 1, 0)
 
 # control shape of nodes
-nodes$shape <- ifelse(nodes$group == 1, "square", "dot")
+# nodes$shape <- ifelse(nodes$group == 1, "square", "dot")
 # do not use "circle" here because circle always has the label inside the shape
 
 # color by community 
-# nodes$color <- V(net_weighted)$color
+# nodes$color <- V(net)$color
   
 
 
@@ -163,7 +176,7 @@ plot <- visNetwork(nodes, edges, height = "1000px", width = "100%") %>%
   visPhysics(stabilization = FALSE) %>%
   visEdges(smooth = FALSE) 
  
-plot
+
 
 visSave(plot, file = "plot.html")
 

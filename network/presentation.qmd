@@ -13,13 +13,13 @@ logo: images/correl.png
 ::: {style="margin-top: 150px;"}
 ::: {fig-align="center"}
 ::: nostretch
-![](images/correl_aus.png){fig-align="center"}
+![](images/correl_aus.png){fig-align="center" width="458"}
 :::
 :::
 :::
 
 ::: {style="text-align: center; font-size:2em; color:#214f8f"}
-**R ggplot (2) - Maps**
+Network visualization with R & visNetwork
 :::
 
 ::: {style="text-align: center;"}
@@ -70,14 +70,40 @@ Good books to start
 :::
 :::
 
-##  {.smaller}
+## Networks {.smaller}
 
-::: {layout="[[1,1,1,1,1]]"}
-## Data: Tweets containing #bundespräsident {.smaller}
+-   Oftentimes researched for communities (who is close)
+
+-   Centrality (degree, betweeness, closeness - e.g. opinion leaders)
+
+-   Structural positions (structural holes, bridge - e.g. gatekeepers, mediators)
+
+-   Overall network description (centralization, density, homophily)
+
+    -\> to dive more into network "theory" check out [Silvia Fierăscu](https://www.youtube.com/channel/UCY4ZU-jXp_ErSnWtsM7CEZA) or [Sarada Herke](https://www.youtube.com/c/SaradaHerke)
+
+## Examples - Twitter networks {.smaller}
+
+<div>
+
+![](images/220719_screenshot_164434.png){width="799"}
+
+</div>
+
+## "Freer" interpretations
+
+::: {layout="[[1]]"}
+[![](images/figure1.png){fig-align="center" width="70cm"}](https://www.maripoldata.eu/un-oceans-conference-2022-bbnj-treaty/)
 :::
 
-. . .
+## Data:  {.smaller}
 
-##  {.smaller}
+240 Tweets containing "bundespräsident" between Sep 20-30
 
-##  {.smaller}
+```{r}
+# read data
+hashtag_result <- read.csv("twitter_data.csv")
+
+head(hashtag_result)
+
+```
