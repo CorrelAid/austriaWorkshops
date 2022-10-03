@@ -72,6 +72,10 @@ Good books to start
 
 ## Networks {.smaller}
 
+-   Consist of "nodes"/"vertices"/"users" (Knoten) and "edges"/"links"/"ties" (Kanten) that connect the nodes
+
+    ![](images/Picture1.png){width="390"}
+
 -   Oftentimes researched for communities (who is close)
 
 -   Centrality (degree, betweeness, closeness - e.g. opinion leaders)
@@ -96,7 +100,7 @@ Good books to start
 [![](images/figure1.png){fig-align="center" width="70cm"}](https://www.maripoldata.eu/un-oceans-conference-2022-bbnj-treaty/)
 :::
 
-## Data:  {.smaller}
+## Data: {.smaller}
 
 240 Tweets containing "bundespräsident" between Sep 20-30
 
