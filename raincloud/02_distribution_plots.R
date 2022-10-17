@@ -91,7 +91,7 @@ data %>%
   labs(x = "",
        y = "votes (%)",
        title = "Austrian Presidential Election 2022",
-       subtitle = "Votes for Alexander Van der Bellen by election districts (postal voting districts in turquoise)") +
+       subtitle = "Votes for Alexander Van der Bellen by electoral districts (postal voting in turquoise)") +
   theme(legend.position = "none")
 
 ## add additional statistical info
@@ -143,7 +143,7 @@ data %>%
   labs(x = "",
        y = "votes (%)",
        title = "Austrian Presidential Election 2022",
-       subtitle = "Votes for Alexander Van der Bellen by election districts (postal voting districts in turquoise)") +
+       subtitle = "Votes for Alexander Van der Bellen by electoral districts (postal voting in turquoise)") +
   theme(legend.position = "none")
 
 

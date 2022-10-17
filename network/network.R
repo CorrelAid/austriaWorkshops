@@ -8,7 +8,7 @@ rm(list = ls())
 
 
 # set working directory
-setwd("C:/Users/arnel/OneDrive/Desktop/git projects/correlaid_wien/austriaWorkshops/network")
+setwd("C:/Users/Felix/Documents/# CorrelAid/austriaWorkshops/network")
 
 # load packages
 library(dplyr)
@@ -89,17 +89,17 @@ net
 
 
 ## communities
-# clp <- cluster_walktrap(net)
-# 
-# V(net)$community <- clp$membership
-# length(unique((clp$membership)))
-# 
-# rain <- rainbow(42, alpha=.5)
-# V(net)$color <- rain[V(net)$community]
+clp <- cluster_walktrap(net)
+
+V(net)$community <- clp$membership
+length(unique((clp$membership)))
+
+rain <- rainbow(42, alpha=.5)
+V(net)$color <- rain[V(net)$community]
 
 
 ## centrality
-#V(net)$degree <- degree(net, mode = "in")
+V(net)$degree <- degree(net, mode = "in")
 
 
 
@@ -125,7 +125,7 @@ nodes <- data.frame(id = V(net)$name)
 nodes$label <- V(net)$name
 
 ### size adding value
-#nodes$size <- V(net)$degree          
+nodes$size <- V(net)$degree          
 
 
 
@@ -148,22 +148,20 @@ edges <- data.frame(from = el$X1, to = el$X2,
 
 
 # conditional attributes
-#edges$label <- ifelse(E(net)$Weight <= 3, "weak reference", "strong reference")
+edges$label <- ifelse(E(net)$Weight <= 3, "weak reference", "strong reference")
 
 
 # add groups on nodes 
 
 # nodes$id
-# 
-# presse <- c("derstandardat", "orf", "hartaberfair", "diepressecom", "ndr", "gi_presse", "tachlesnews", "kleinezeitung", "morgenpost")
-# nodes$group <- ifelse(nodes$id %in% presse, 1, 0)
-
-# control shape of nodes
-# nodes$shape <- ifelse(nodes$group == 1, "square", "dot")
-# do not use "circle" here because circle always has the label inside the shape
-
-# color by community 
-# nodes$color <- V(net)$color
+ 
+ presse <- c("derstandardat", "orf", "hartaberfair", "diepressecom", "ndr", "gi_presse", "tachlesnews", "kleinezeitung", "morgenpost", "sfrnews")
+ nodes$group <- ifelse(nodes$id %in% presse, 1, 0)
+ #control shape of nodes
+ nodes$shape <- ifelse(nodes$group == 1, "square", "dot")
+ # do not use "circle" here because circle always has the label inside the shape
+ # color by community 
+ nodes$color <- V(net)$color
   
 
 
