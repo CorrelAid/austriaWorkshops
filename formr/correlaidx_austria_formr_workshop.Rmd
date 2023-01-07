@@ -1,0 +1,125 @@
+---
+title: "FormR Example Survey Analysis"
+author: "CorrelAidX Austria"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+header-includes:
+     \usepackage{fancyhdr}
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(formr)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(viridis)
+library(ggthemes)
+library(kableExtra)
+gc()
+
+rm(list = ls())
+# 
+# credentials = list(email =
+#                      "admin registered email address", password =
+#                      "password")
+# 
+# 
+# formr_connect(credentials$email,
+#               credentials$password)
+# rm(credentials)
+
+# data <- formr_results(survey_name = 'formr_example')
+# data <- formr_raw_results(survey_name = "formr_example")
+
+
+
+### or download manually and run directly in folder: 
+
+data <- read.csv("formr_example.csv")
+
+
+## filter data 
+# only after a certain date / no "test" sessions
+
+# data <- data %>%
+#   mutate(created = as.Date(created, format = '%Y-%m-%d')) %>%
+#   filter(
+#     created > "2023-01-05",
+#     session != "",
+#     !is.na(session),
+#     !str_detect("XXX", session)
+#   )
+
+
+
+
+data <- arrange(data, created)
+
+
+```
+
+
+## Visualization
+
+# First a table with overview over sample
+
+```{r, echo=FALSE, warning = FALSE}
+
+## select variables needed for visualization (same as "name")
+
+
+participant_info <- data %>% select(student, country_student)
+
+# first make a table to give overview over participant(s)
+
+table <- participant_info
+
+# replace 1 / 2 values with yes / no
+table$student <- ifelse(table$student == 1, "yes", "no")
+
+
+knitr::kable(table, booktabs = T, longtable = T) %>% 
+  kable_styling()
+
+```
+
+
+# Now a bit more analytical visualization
+
+
+```{r, echo=FALSE, warning = FALSE}
+
+score <- data %>% select(motivation, height)
+
+score1 <- score[nrow(score),]
+
+
+p <- ggplot(score, aes(x=motivation, y=height, fill = "Other Participants")) + 
+  geom_point() + 
+  scale_x_continuous(limits = c(0, 5), breaks = seq(0,5,1), minor_breaks = seq(0,5,1)) +
+  scale_y_continuous(limits = c(0, 5), breaks = seq(0,5,1), minor_breaks = seq(0,5,1)) +
+  xlab("Motivation") +
+  ylab("Height") +
+  ggtitle("Test Result") + scale_fill_discrete(name = "New Legend Title")
+
+
+
+p +
+  geom_point(data = score1, aes(x=motivation, y=height, colour = "Last participant's score")) +
+  geom_rect(aes(xmin = 0, xmax = 2.5, ymin = 0, ymax = 2.5),
+            fill = "orangered1", alpha = 0.03) + 
+  geom_rect(aes(xmin = 2.5, xmax = 5, ymin = 2.5, ymax = 5),
+            fill = "green", alpha = 0.03) +
+  geom_rect(aes(xmin = 0, xmax = 2.5, ymin = 2.5, ymax = 5),
+            fill = "lightskyblue1", alpha = 0.03) + 
+  geom_rect(aes(xmin = 2.5, xmax = 5, ymin = 0, ymax = 2.5),
+            fill = "dodgerblue1", alpha = 0.03) +
+  theme_classic() +
+  theme(legend.title=element_blank()) 
+
+
+```
