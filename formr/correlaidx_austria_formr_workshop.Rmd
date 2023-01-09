@@ -72,7 +72,7 @@ data <- arrange(data, created)
 ## select variables needed for visualization (same as "name")
 
 
-participant_info <- data %>% select(student, country_student)
+participant_info <- data %>% select(student, country_student, fun, meeting_rating)
 
 # first make a table to give overview over participant(s)
 
@@ -93,33 +93,36 @@ knitr::kable(table, booktabs = T, longtable = T) %>%
 
 ```{r, echo=FALSE, warning = FALSE}
 
-score <- data %>% select(motivation, height)
+score <- data %>% select(motivation, satis)
 
 score1 <- score[nrow(score),]
 
 
-p <- ggplot(score, aes(x=motivation, y=height, fill = "Other Participants")) + 
+
+p <- ggplot(score, aes(x=motivation, y=satis, fill = "Other Participants")) + 
   geom_point() + 
-  scale_x_continuous(limits = c(0, 5), breaks = seq(0,5,1), minor_breaks = seq(0,5,1)) +
-  scale_y_continuous(limits = c(0, 5), breaks = seq(0,5,1), minor_breaks = seq(0,5,1)) +
+  scale_x_continuous(limits = c(1, 5), breaks = seq(1,5,1), minor_breaks = seq(1,5,1)) +
+  scale_y_continuous(limits = c(1, 5), breaks = seq(1,5,1), minor_breaks = seq(1,5,1)) +
   xlab("Motivation") +
-  ylab("Height") +
+  ylab("Satisfaction") +
   ggtitle("Test Result") + scale_fill_discrete(name = "New Legend Title")
 
 
 
 p +
-  geom_point(data = score1, aes(x=motivation, y=height, colour = "Last participant's score")) +
-  geom_rect(aes(xmin = 0, xmax = 2.5, ymin = 0, ymax = 2.5),
+  geom_point(data = score1, aes(x=motivation, y=satis, colour = "Your score")) +
+  geom_rect(aes(xmin = 1, xmax = 3, ymin = 1, ymax = 3),
             fill = "orangered1", alpha = 0.03) + 
-  geom_rect(aes(xmin = 2.5, xmax = 5, ymin = 2.5, ymax = 5),
+  geom_rect(aes(xmin = 3, xmax = 5, ymin = 3, ymax = 5),
             fill = "green", alpha = 0.03) +
-  geom_rect(aes(xmin = 0, xmax = 2.5, ymin = 2.5, ymax = 5),
+  geom_rect(aes(xmin = 1, xmax = 3, ymin = 3, ymax = 5),
             fill = "lightskyblue1", alpha = 0.03) + 
-  geom_rect(aes(xmin = 2.5, xmax = 5, ymin = 0, ymax = 2.5),
+  geom_rect(aes(xmin = 3, xmax = 5, ymin = 1, ymax = 3),
             fill = "dodgerblue1", alpha = 0.03) +
   theme_classic() +
   theme(legend.title=element_blank()) 
+
+
 
 
 ```
