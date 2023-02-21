@@ -92,7 +92,7 @@ data %>%
        y = "votes (%)",
        title = "Austrian Presidential Election 2022",
        subtitle = "Votes for Alexander Van der Bellen by electoral districts (postal voting in turquoise)") +
-  theme(legend.position = "none")
+  guides(fill = "none")
 
 ## add additional statistical info
 
@@ -102,7 +102,8 @@ stat_box_data <- function(y,
     data.frame(
       y = 1.25 * upper_limit,
       label = paste('count =', length(y), '\n',
-                    'mean =', round(mean(y), 1), '\n')
+                    'mean =', round(mean(y), 1), '\n',
+                    'max =', round(max(y), 1), '\n')
     )
   )
 }

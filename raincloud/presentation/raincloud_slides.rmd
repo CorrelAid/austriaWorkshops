@@ -128,6 +128,47 @@ class: title-slide middle
 #### `r rmarkdown::metadata$author`
 #### `r rmarkdown::metadata$date`
 ---
+class:inverse
+# CorrelAidX Challenge
+.pull-left[
+```{r, echo=FALSE, out.width="110%"}
+knitr::include_graphics("figures/2022-correlaidx-challenge_1.png")
+```
+]
+.pull-right[
+```{r, echo=FALSE, out.width="110%"}
+knitr::include_graphics("figures/2022-correlaidx-challenge_2.png")
+```
+]
+
+.centre[
+Interested? 
+Contact us austria@correlaid.org or 
+join the CorrelAid Austria Slack channel https://docs.correlaid.org/wiki/communication/slack 
+]
+---
+class:inverse
+# About me
+
+.pull-left[
+```{r, echo=FALSE, out.width="75%",out.extra='angle=c(90)'}
+knitr::include_graphics("figures/IMG_9418.jpeg")
+```
+]
+
+.pull-right[
+* lives in Neumarkt & Vienna
+
+* studied political science & social policy
+
+* works at the European Centre for Social Welfare Policy and Research
+
+* mostly microsimulation of tax-benefit reforms
+
+* has to use STATA - hates it!
+]
+---
+
 
 ```{r ggplot2 raincloud plot, echo=FALSE, fig.dim=c(9, 4.5), out.width = "100%"}
 data %>% 
