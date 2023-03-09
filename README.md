@@ -1,6 +1,6 @@
 
 
-![header_long](assets\header_long.png)
+![header_long](static/header_long.png)
 
 # Weekly Visualisations - mostly harmless -
 
