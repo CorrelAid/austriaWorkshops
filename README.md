@@ -6,7 +6,7 @@
 
 For each session of our (Local Chapter Austria)  workshop series you can find all the information here. Just scroll down to the corresponding workshop and click on the title to find out more about the event!
 
-Please register if you want to take part: LINK TO FORM
+Please register if you want to take part: [Link to workshop registration](https://forms.gle/YqB4mbbze7CawFdL6)
 
 ## 2023
 | Date & Time | Topic | Description | Prerequisites | Venue | Lecturer |
