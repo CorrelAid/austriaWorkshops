@@ -8,6 +8,8 @@ For each session of our (Local Chapter Austria)  workshop series you can find al
 
 Please register if you want to take part: [Link to workshop registration](https://forms.gle/YqB4mbbze7CawFdL6)
 
+*we will send you details for participating in workshop (google meet link, link to materials) one day before the workshop - registration is mandatory*
+
 ## 2023
 | Date & Time | Topic | Description | Prerequisites | Venue | Lecturer |
 | -- | -- | -- | -- | -- | -- |
@@ -20,8 +22,6 @@ Please register if you want to take part: [Link to workshop registration](https:
 | 2023-06-20 20:00 CET | [Quarto - tba](materials/2023-06-20_Quarto_2/readme.md) |  |  | online | Simon & Julian |
 | 2023-07-04 20:00 CET | [Quarto workshop](materials/2023-07-04_Quarto_workshop/readme.md) | Hands on with Quarto. We help you to build your own website, Blog, Presentation, Paper .... |  | online & Innsbruck | Simon & Julian |
 
-
-## 2022
 
 **About CorrelAid**  
 
