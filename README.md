@@ -1,6 +1,6 @@
 
 
-![header_long](static/header_long.png)(https://forms.gle/YqB4mbbze7CawFdL6)
+![header_long](static/header_long.png)
 
 # Weekly Visualisations - mostly harmless -
 
