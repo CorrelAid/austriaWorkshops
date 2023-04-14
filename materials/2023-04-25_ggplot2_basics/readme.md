@@ -1,3 +1,3 @@
-# Title
+# Introduction into data visualisation with R & ggplot
 
-add more information
+In our first workshop we will give you a short introduction into data visualizations in R with ggplot2 from tidyverse. It will be a hands-on workshop with some lecture elements and code snippets you can adapt to your needs. Some prior R knowledge and rough understanding of tidyverse specifics would be helpful but it is not necessary. We will upload the slides and data some days before the workshop to this repository.
