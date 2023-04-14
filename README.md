@@ -2,7 +2,7 @@
 
 ![header_long](static/header_long.png)
 
-# Weekly Visualisations - mostly harmless -
+# Veekly Visualizations - mostly harmless -
 
 For each session of our (Local Chapter Austria)  workshop series you can find all the information here. Just scroll down to the corresponding workshop and click on the title to find out more about the event!
 
