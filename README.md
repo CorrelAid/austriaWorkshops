@@ -8,7 +8,7 @@ For each session of our (Local Chapter Austria)  workshop series you can find al
 
 Please register if you want to take part: [Link to workshop registration](https://forms.gle/YqB4mbbze7CawFdL6)
 
-*we will send you details for participating in workshop (google meet link, link to materials) one day before the workshop - registration is mandatory*
+*we will send you details for participating in workshop (zoom meet link, link to materials) one day before the workshop - registration is mandatory*
 
 ## 2023
 | Date & Time | Topic | Description | Prerequisites | Venue | Lecturer |
