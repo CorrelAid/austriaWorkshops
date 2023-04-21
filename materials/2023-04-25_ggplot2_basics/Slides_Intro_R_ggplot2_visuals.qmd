@@ -1,0 +1,217 @@
+---
+title: "Introduction into data visualisation with R & ggplot2"
+author: "Felix - CorrelAidX Austria"
+format: 
+  revealjs:
+    logo: figs/CorrelAid X-Icon_white.svg
+    smaller: true
+    self-contained: true
+editor: visual
+title-slide-attributes: 
+  data-background-image: figs/CorrelAid X-Icon_white.svg
+  data-background-size: 15%
+  data-background-position: 98% 2%
+---
+
+## CorrelAid
+
+We are a network of over 2.000 volunteers, who want to improve the world through data science
+
+-   2.400 data analysts in our interdisciplinary and diverse network
+
+-   57 finished projects with well-known NPO since 2015 & \>60 workshops
+
+-   13 local chapters in Germany, the Netherlands, France, Switzerland, and Austria
+
+Join us for data4good projects, workshops and exchange with a great network
+
+<https://www.correlaid.org> & [austria\@correlaid.org](mailto:austria@correlaid.org)
+
+## First steps in R
+
+```{r}
+#| echo: true
+#| warning: true
+#| message: true
+
+
+# first time using the packages, you need to install them
+#install.packages("tidyverse")
+#install.packages("palmerpenguins")
+
+# load packages
+library(tidyverse) # loads also ggplot2
+library(palmerpenguins) # our data for today
+
+
+```
+
+## palmerpenguins data {background-image="figs/logo_palmer.png" background-size="10%" background-position="98% 2%"}
+
+```{r}
+#| echo: true
+glimpse(penguins)
+head(penguins, n=3)
+```
+
+## Syntax of ggplot2 {background-image="figs/logo_ggplot2.png" background-size="10%" background-position="98% 2%"}
+
+[![](figs/ggplot2_syntax.png){width="1200"}](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
+
+## data
+
+To create a visualisation the first line is always:
+
+`ggplot(data = <NAME OF DATAFRAME>)`
+
+The line tells R in which data object contains the variables you want to plot. It creates the first layer of the plot. Since no variables are specified, the first layer is an empty canvas
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins)
+```
+
+## geom_function
+
+Every additional layer is added with `+`
+
+`geom_function` is the mandatory second line, and defines the type of plot[^1]
+
+[^1]: There are quite a lot of different geom_functions, have a look at the [ggplot2 homepage](https://ggplot2.tidyverse.org/) or at [R Graph Gallery](https://r-graph-gallery.com/).
+
+With `geom_bar()` we create a bar plot and by specifying the variable `species` inside `mapping = aes(x = species)` we indicate for which variable we want to plot the number of observations for each category.
+
+x- and y-axis are aesthetics and need to be specified inside `aes()`.
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins) +
+  geom_bar(mapping = aes(x = species))
+```
+
+## multiple variables
+
+Adding a second variable to the plot can be done through an additional aesthetic inside `aes()`. If the variables are defined correctly as numeric, factor or character ggplot chooses the right scale and name of the axes.
+
+By adding `fill = island` inside `aes()` we are disaggregating the number of penguins species by the island where they live.
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins) +
+  geom_bar(mapping = aes(x = species, fill = island))
+```
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins) +
+  geom_bar(mapping = aes(x = species, fill = island),
+           position = "dodge")
+```
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins) +
+  geom_bar(mapping = aes(x = species, fill = island),
+           position = "fill")
+```
+
+## plot distributions
+
+Up to now we used two categorical variables, but you can also plot the distribution of numeric variables.
+
+Instead of `geom_bar()` we use `geom_boxplot` to illustrate the distribution of the penguins `body_mass_g`.\`
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins) +
+  geom_boxplot(mapping = aes(y = body_mass_g))
+```
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins) +
+  geom_boxplot(mapping = aes(y = body_mass_g, x = species))
+```
+
+## plot multiple numeric variables
+
+Other `geom_functions` such as `geom_point()` require two numeric variables.
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins) +
+  geom_point(mapping = aes(y = body_mass_g, x = flipper_length_mm)) +
+    stat_smooth(mapping = aes(y = body_mass_g, x = flipper_length_mm), method = "lm",geom = "smooth")
+```
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins, mapping = aes(y = body_mass_g, x = flipper_length_mm)) +
+  geom_point() +
+    stat_smooth(method = "lm",geom = "smooth")
+```
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins, mapping = aes(y = body_mass_g, x = flipper_length_mm, colour = species)) +
+  geom_point() +
+    stat_smooth(method = "lm",geom = "smooth")
+```
+
+## adding labels
+
+Every part of the plot can be changes with the right function. With `labs` you can label the title, axes, legend, and also add notes.
+
+## 
+
+```{r}
+#| echo: true
+
+ggplot(data = penguins, mapping = aes(y = body_mass_g, x = flipper_length_mm, colour = species)) +
+  geom_point() +
+  stat_smooth(method = "lm",geom = "smooth") +
+  labs(title = "Do heavier penguins have longer flippers?",
+       x = "lenght of flipper in mm",
+       y = "weight in g",
+       colour = "penguin species",
+       caption  = "Data from palmerpenguins package")
+  
+```
+
+## now it is your turn
+
+-   Use the R script from github <https://github.com/CorrelAid/austriaWorkshops/blob/main/materials/2023-04-25_ggplot2_basics>
+
+-   Adapt the code and plot the relationship between penguins' bill length and bill depth
+
+![](figs/culmen_depth.png)
