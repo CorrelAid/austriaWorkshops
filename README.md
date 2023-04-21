@@ -8,7 +8,7 @@ For each session of our (Local Chapter Austria)  workshop series you can find al
 
 Please register if you want to take part: [Link to workshop registration](https://forms.gle/YqB4mbbze7CawFdL6)
 
-*we will send you details for participating in workshop (google meet link, link to materials) one day before the workshop - registration is mandatory*
+*we will send you details for participating in workshop (zoom meet link, link to materials) one day before the workshop - registration is mandatory*
 
 ## 2023
 | Date & Time | Topic | Description | Prerequisites | Venue | Lecturer |
@@ -19,7 +19,7 @@ Please register if you want to take part: [Link to workshop registration](https:
 | 2023-05-23 20:00 CET | [Visualisation of Global Fishing Watch Data I](materials/2023-05-23_GFW_visualisation_development/readme.md) | Explore the data from Global Fishing Watch, develop ideas of use-cases and visualisations of their data and start creating useful visualisations. | none, basic R knowledge helps  | online & Vienna | Arne |
 | 2023-05-30 20:00 CET | [Visualisation of Global Fishing Watch Data II](materials/2023-05-30_GFW_visualisation_presentation/readme.md) | Finalise and discuss our visualisations of Global Fishing Watch's data. | none, basic R knowledge helps | online & Vienna | Arne |
 | 2023-06-13 20:00 CET | [R Quarto - Basics](materials/2023-06-13_Quarto_basics/readme.md) | Idea of Quarto; Comparison to Rmarkdown; Getting started in Quarto Use Cases; most important features, yaml | none, basic R knowledge or LaTex helps | online | Simon & Julian |
-| 2023-06-20 20:00 CET | [R Quarto - Advanced](materials/2023-06-20_Quarto_2/readme.md) |  |  | online | Simon & Julian |
+| 2023-06-21 20:00 CET | [Python Quarto](materials/2023-06-20_Quarto_2/readme.md) |  |  | online | Simon & Julian & Moritz |
 | 2023-06-27 20:00 CET | [R Quarto - hands on workshop](materials/2023-07-04_Quarto_workshop/readme.md) | Hands on with Quarto. We help you to build your own website, Blog, Presentation, Paper .... |  | online & Innsbruck | Simon & Julian |
 
 
