@@ -19,7 +19,7 @@ Please register if you want to take part: [Link to workshop registration](https:
 | 2023-05-23 20:00 CET | [Visualisation of Global Fishing Watch Data I](materials/2023-05-23_GFW_visualisation_development ) | Explore the data from Global Fishing Watch, develop ideas of use-cases and visualisations of their data and start creating useful visualisations. | none, basic R knowledge helps  | online & Vienna | Arne |
 | 2023-05-30 20:00 CET | [Visualisation of Global Fishing Watch Data II](materials/2023-05-30_GFW_visualisation_presentation ) | Finalise and discuss our visualisations of Global Fishing Watch's data. | none, basic R knowledge helps | online & Vienna | Arne |
 | 2023-06-13 20:00 CET | [R Quarto - Basics](materials/2023-06-13_Quarto_basics ) | Idea of Quarto; Comparison to Rmarkdown; Getting started in Quarto Use Cases; most important features, yaml | none, basic R knowledge or LaTex helps | online | Simon & Julian |
-| 2023-06-21 20:00 CET | [Python Quarto](materials/2023-06-20_Quarto_2 ) |  |  | online | Simon & Julian & Moritz |
+| 2023-06-21 20:00 CET | [Python Quarto](2023-06-20_Quarto_Python) | Build on the knowledge of previous Quarto Session and make use of Quarto's features in the context of Data Exploration and Analysis with Python | Basic knowledge of Python and previous Session helps but is not a must, access to a Jupyter Notebook Environment (local, Colab, Kaggle, ...) | online | Simon & Julian & Moritz |
 | 2023-06-27 20:00 CET | [R Quarto - hands on workshop](materials/2023-07-04_Quarto_workshop ) | Hands on with Quarto. We help you to build your own website, Blog, Presentation, Paper .... |  | online & Innsbruck | Simon & Julian |
 
 
