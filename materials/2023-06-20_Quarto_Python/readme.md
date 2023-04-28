@@ -1,4 +1,4 @@
-# Presenting Data Exploration and Anaylsis using Python in Quarto
+# Presenting Data Exploration and Anaylsis in Quarto using Python
 
 ## Quarto
 Quarto can be used to create polished documents and reports. It gives you access to a wide range of output formats and automated styling. 
