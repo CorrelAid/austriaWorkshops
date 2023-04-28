@@ -7,11 +7,11 @@ Using Quarto for Python is quite straightforward and we'll be using Jupyter Note
 
 Include the following lines above your Notebook as a markdown cell.
 
----
+`---
 title: "Example Report"
 author: "Joan Robinson"
 format: pdf
 toc: true
 number-sections: true
 jupyter: python3
----
+---`
