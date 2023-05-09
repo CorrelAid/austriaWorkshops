@@ -404,7 +404,7 @@
 <p><strong>R ggplot (2) - Maps</strong></p>
 </div>
 <div style="text-align: center;">
-<p>Julian Granna, MSc.</p>
+<p>Julian Granna</p>
 </div>
 </section>
 <section id="contents" class="slide level2 smaller">
@@ -414,8 +414,8 @@
 <li class="fragment">Administrative stuff</li>
 <li class="fragment">Personal bio</li>
 <li class="fragment">Introduction to the concept on maps in R</li>
-<li class="fragment">Brief recap of the first session using unemployment data from Austria</li>
-<li class="fragment">Build a map that shows unemployment rates in Austria</li>
+<li class="fragment">Brief introduction into today’s dataset including some descriptive graphs with <code>ggplot</code></li>
+<li class="fragment">Build a map that shows unemployment rates in Austrian states (<code>sf</code>-package)</li>
 <li class="fragment">Extent the map with some style</li>
 </ul>
 </div>
@@ -435,8 +435,8 @@
 <h2>Administrative</h2>
 <div>
 <ul>
-<li class="fragment">all code and presentation can be found on GitHub: <a href="https://github.com/CorrelAid/austriaWorkshops" class="uri">https://github.com/CorrelAid/austriaWorkshops</a></li>
-<li class="fragment">Details on workshops can be found on our website: <a href="https://correlaid.github.io/correlaidx-austria-education/" class="uri">https://correlaid.github.io/correlaidx-austria-education/</a></li>
+<li class="fragment">all code and presentation can be found on GitHub: <a href="https://github.com/CorrelAid/austriaWorkshops/materials/2023-05-09_ggplot2_spatial" class="uri">https://github.com/CorrelAid/austriaWorkshops/materials/2023-05-09_ggplot2_spatial</a></li>
+<li class="fragment">Details on workshops can be found on our website: <a href="https://github.com/CorrelAid/austriaWorkshops" class="uri">https://github.com/CorrelAid/austriaWorkshops</a></li>
 </ul>
 </div>
 </section>
@@ -447,8 +447,8 @@
 <ul>
 <li class="fragment">BSc. in Economics and Business Administration at Leibniz University Hannover, DE</li>
 <li class="fragment">MSc. in Economics at UIBK, AT</li>
-<li class="fragment">University assistant and PhD in Economics and Statistics at Dept. of Statistics, UIBK</li>
-<li class="fragment">Research focus: Modeling of real estate prices in Germany</li>
+<li class="fragment">University assistant and PhD student in Economics and Statistics at Dept. of Statistics, UIBK</li>
+<li class="fragment">Research focus: Hedonic modeling of real estate prices in Germany</li>
 </ul>
 </div>
 </section>
@@ -588,7 +588,7 @@
 <li>The next step is to draw a map using the <a href="https://github.com/r-spatial/sf">sf-package</a>. Our map data comes from the <a href="https://github.com/ropensci/rnaturalearth">rnaturalearth-package</a>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|1|2|4,5|7,8,9|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(sf)</span>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|1|2|4,5|7,8,9|1-11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(rnaturalearth)</span>
 <span id="cb7-3"><a href="#cb7-3"></a></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co"># read sf data for Austrian map</span></span>
@@ -601,7 +601,8 @@
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "sf"         "data.frame"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="|1|2|4,5|7,8,9|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># austria</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="|1|2|4,5|7,8,9|1-11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># glimpse at the map data</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co"># austria</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="b-drawing-a-map-with-sf-1" class="slide level2 smaller">
@@ -693,9 +694,21 @@
 </div>
 </div>
 </div>
-<p><img src="correl.png" class="slide-logo"></p>
-<div class="footer footer-default">
-<p><a href="https://correlaid.github.io/correlaidx-austria-education/" class="uri">https://correlaid.github.io/correlaidx-austria-education/</a></p>
+</section>
+<section id="now-it-is-your-turn" class="slide level2">
+<h2>now it is your turn</h2>
+<ul>
+<li><p>Use the <code>presentation.R</code> script from github <a href="https://github.com/CorrelAid/austriaWorkshops/materials/2023-05-09_ggplot2_spatial" class="uri">https://github.com/CorrelAid/austriaWorkshops/materials/2023-05-09_ggplot2_spatial</a></p></li>
+<li><p>Adapt the code and plot the unemployment rate separately for men and women either</p>
+<ol type="1">
+<li><p><em>(beginners)</em> using two different plots or</p></li>
+<li><p><em>(advanced)</em> using facets in ggplot.</p></li>
+</ol></li>
+<li><p>Feel free to experiment with colours, legend positions / types, etc. !</p></li>
+</ul>
+
+<img src="figs/correl.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p><a href="https://github.com/CorrelAid/austriaWorkshops/" class="uri">https://github.com/CorrelAid/austriaWorkshops/</a></p>
 </div>
 </section>
     </div>

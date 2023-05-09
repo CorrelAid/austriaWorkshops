@@ -1,12 +1,18 @@
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: fragment
+#| code-line-numbers: "|1,2,3|4|5|"
+
 # read data from github
 url <- 
-  "https://raw.githubusercontent.com/CorrelAid/austriaWorkshops/main/ggplot2_2/data/unemployment_austria.csv"
+  "https://raw.githubusercontent.com/CorrelAid/austriaWorkshops/main/materials/2022-09-27%20ggplot2_spatial/data/unemployment_austria.csv"
 data <- read.csv(url, header = TRUE, sep = ";", dec = ",")
 names(data)
 
 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: fragment
+#| code-line-numbers: "|1,2|4,5|"
+
 # rename variables
 names(data) <- c("states", "unemployed", "unemployed.men", "unemployed.women", "rate", "rate.men", "rate.women")
 
@@ -14,7 +20,10 @@ names(data) <- c("states", "unemployed", "unemployed.men", "unemployed.women", "
 head(data)
 
 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: column-fragment
+#| code-line-numbers: "|1,2|4,5,6,7|"
+
 # order states by unemployment rates
 data <- data[order(data$rate), ]   
 
@@ -26,7 +35,10 @@ ggplot(data = data, aes(x = states, y = rate)) +
   geom_col()
 
 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "|1,2,3|4|5,6,7|8,9,10,11,12,13,14,15,16|17,18,19,20,21|"
+
 # plot
 ggplot(data = data, aes(x = states, y = rate, 
                         fill = rate)) +
@@ -51,7 +63,10 @@ ggplot(data = data, aes(x = states, y = rate,
                             title.hjust = .5)) 
 
 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: fragment
+#| code-line-numbers: "|1|2|4,5|7,8,9|1-11|"
+
 library(sf)
 library(rnaturalearth)
 
@@ -60,23 +75,33 @@ austria <- ne_states(country = "Austria", returnclass = "sf")
 
 # look at the data
 class(austria)
+
+# glimpse at the map data
 # austria
 
 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: fragment
+
 # draw the map
 ggplot(data = austria) +
   geom_sf()
 
 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: fragment
+#| code-line-numbers: "|1,2|1,3|1,4|"
+
 # merge 
 data <- subset(data, states != "Austria")
 names(data)[1] <- "name_en"
 austria <- merge(austria, data, by = "name_en")
 
 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: column
+#| code-line-numbers: "|1,2|3|4|5|6-11|12|13-16|17-22|23|"
+
 # plot
 library(colorspace)
 p <- ggplot(data = austria) +
@@ -102,7 +127,10 @@ p <- ggplot(data = austria) +
 p
 
 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#| echo: true
+#| output-location: column-fragment
+#| code-line-numbers: "|1-2|4-6|8-11|12-15|16|"
+
 library(maps)
 library(ggrepel)
 

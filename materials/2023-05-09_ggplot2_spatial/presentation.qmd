@@ -3,9 +3,9 @@ format:
   revealjs: 
     theme: [simple, custom.scss]
     transition: slide
-footer: <https://correlaid.github.io/correlaidx-austria-education/>
+footer: <https://github.com/CorrelAid/austriaWorkshops/>
 editor: visual
-logo: correl.png
+logo: figs/correl.png
 ---
 
 ##  {margin="0.6"}
@@ -23,7 +23,7 @@ logo: correl.png
 :::
 
 ::: {style="text-align: center;"}
-Julian Granna, MSc.
+Julian Granna
 :::
 
 ## Contents {.smaller}
@@ -32,8 +32,8 @@ Julian Granna, MSc.
 -   Administrative stuff
 -   Personal bio
 -   Introduction to the concept on maps in R
--   Brief recap of the first session using unemployment data from Austria
--   Build a map that shows unemployment rates in Austria
+-   Brief introduction into today's dataset including some descriptive graphs with `ggplot`
+-   Build a map that shows unemployment rates in Austrian states (`sf`-package)
 -   Extent the map with some style
 :::
 
@@ -54,8 +54,8 @@ Join us for data4good projects, workshops and exchange with a great network
 ## Administrative
 
 ::: incremental
--   all code and presentation can be found on GitHub: <https://github.com/CorrelAid/austriaWorkshops>
--   Details on workshops can be found on our website: <https://correlaid.github.io/correlaidx-austria-education/>
+-   all code and presentation can be found on GitHub: <https://github.com/CorrelAid/austriaWorkshops/materials/2023-05-09_ggplot2_spatial>
+-   Details on workshops can be found on our website: <https://github.com/CorrelAid/austriaWorkshops>
 :::
 
 ## About me {.smaller}
@@ -65,8 +65,8 @@ Join us for data4good projects, workshops and exchange with a great network
 ::: incremental
 -   BSc. in Economics and Business Administration at Leibniz University Hannover, DE
 -   MSc. in Economics at UIBK, AT
--   University assistant and PhD in Economics and Statistics at Dept. of Statistics, UIBK
--   Research focus: Modeling of real estate prices in Germany
+-   University assistant and PhD student in Economics and Statistics at Dept. of Statistics, UIBK
+-   Research focus: Hedonic modeling of real estate prices in Germany
 :::
 
 ## Maps with ggplot {.smaller}
@@ -177,7 +177,7 @@ ggplot(data = data, aes(x = states, y = rate,
 ```{r}
 #| echo: true
 #| output-location: fragment
-#| code-line-numbers: "|1|2|4,5|7,8,9|"
+#| code-line-numbers: "|1|2|4,5|7,8,9|1-11|"
  
 library(sf)
 library(rnaturalearth)
@@ -187,6 +187,8 @@ austria <- ne_states(country = "Austria", returnclass = "sf")
 
 # look at the data
 class(austria)
+
+# glimpse at the map data
 # austria
 ```
 
@@ -276,3 +278,15 @@ p <- p +
                   size = 4) 
 p
 ```
+
+## now it is your turn
+
+-   Use the `presentation.R` script from github <https://github.com/CorrelAid/austriaWorkshops/materials/2023-05-09_ggplot2_spatial>
+
+-   Adapt the code and plot the unemployment rate separately for men and women either
+
+    1.  *(beginners)* using two different plots or
+
+    2.  *(advanced)* using facets in ggplot.
+
+-   Feel free to experiment with colours, legend positions / types, etc. !
