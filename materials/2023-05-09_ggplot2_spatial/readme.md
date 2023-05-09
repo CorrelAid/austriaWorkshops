@@ -1,3 +1,3 @@
-# Title
+# Visualising basic spatial data in R using ggplot
 
-add more information
+More info coming up.
