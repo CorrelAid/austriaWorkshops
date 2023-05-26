@@ -53,11 +53,11 @@ longline <- get_vessel_info(
 )
 
 
-# exactly 10000 obs by coincidence?
+# exactly 10000 vessels by coincidence?
 
 
 ## paste all vessel ids together
-longline_ids <- paste0(longline$id[1:100], collapse = ',')
+longline_ids <- paste0(longline$id[1:200], collapse = ',')
 
 
 
@@ -71,9 +71,6 @@ df_longline_fishing <- get_event(event_type='fishing',
 )
 
 
-## get id of eezs in which these activities took place
-
-df_longline_fishing %>% filter(!is.na())
 
 
 ## filter out where no flag state information is available
@@ -84,6 +81,7 @@ df_longline_fishing <- df_longline_fishing %>%
 
 
 
+## get id of eezs in which these activities took place
 
 fished_eezs <- c()
 for(i in 1:nrow(df_longline_fishing)){
@@ -113,13 +111,11 @@ df <- fished_eezs %>% select(flag, fished_eez) %>%
   dplyr::rowwise() %>%
   dplyr::mutate(eez_name = get_region_id(region_name = as.numeric(fished_eez),
                                          region_source = 'eez',
-                                         key = key)$label)
+                                         key = key)$iso3)
 
 
-get_region_id()
 
 edgelist <- df %>% select(flag, eez_name)
-  
   
   
   ## create weights 
@@ -164,7 +160,7 @@ el <- data.frame(get.edgelist(net))
 edges <- data.frame(from = el$X1, to = el$X2,
                     
                     # add labels on edges                  
-                    label = c("fishes in"),
+                    label = c("fishes in EEZ of"),
                     
                     # arrows
                     arrows = c("to"),
