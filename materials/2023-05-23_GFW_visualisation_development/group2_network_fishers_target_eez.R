@@ -1,18 +1,18 @@
 ### r file group 2 - network map between fishing states and eezs
 
 
-# Install ggplot for visualizing
-install.packages("ggplot2")
-
-# install shiny apps
-install.packages("shiny")
-
-# install sf for spatial visualizations
-install.packages("sf")
-
-# install Global Fishing Watch R package
-devtools::install_github("GlobalFishingWatch/gfwr")
-
+# # Install ggplot for visualizing
+# install.packages("ggplot2")
+# 
+# # install shiny apps
+# install.packages("shiny")
+# 
+# # install sf for spatial visualizations
+# install.packages("sf")
+# 
+# # install Global Fishing Watch R package
+# devtools::install_github("GlobalFishingWatch/gfwr")
+# 
 
 # load packages
 library(gfwr)
@@ -59,7 +59,7 @@ df_usa_longline_fishing <- get_event(event_type='fishing',
 
 fished_eezs <- c()
 
-for(i in 1:62){
+for(i in 1:162){
   id <- paste0(df_usa_longline_fishing$regions[[i]]$eez[1])
   fished_eezs <- data.frame(rbind(fished_eezs, id))}
 
@@ -68,6 +68,10 @@ for(i in 1:62){
 ## organize dataframe
 fished_eezs$row <- row.names(fished_eezs)  
 rownames(fished_eezs)<-NULL
+fished_eezs <- select(fished_eezs, -c("row"))
+
+colnames
+
 
 # fished_eezs$rbind.fished_eezs..id. %>% as.numeric()
 # 
