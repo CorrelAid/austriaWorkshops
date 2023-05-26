@@ -185,3 +185,4 @@ plot <- visNetwork(nodes, edges, height = "1000px", width = "100%") %>%
 
   
 plot
+
