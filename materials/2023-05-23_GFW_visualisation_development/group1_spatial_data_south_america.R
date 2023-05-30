@@ -75,6 +75,7 @@ eez_fish_all_df <- eez_fish_df %>%
 ## now we plot this
 
 
+## now we plot this
 q <- quantile(eez_fish_all_df$fishing_hours)
 eez_fish_all_df$fishing_hours_cat <- ifelse(eez_fish_all_df$fishing_hours <= q[1], 1,
                                             ifelse(eez_fish_all_df$fishing_hours <= q[2], 2, 
@@ -103,7 +104,7 @@ eez_fish_all_df %>%
 
 
 eez_fish_guafo_df <- eez_fish_all_df %>% filter(between(Lat,-44.2,-43),
-                                                between(Long(Lon,-75.9,-74.5)))
+                                                between(Lon,-75.9,-74.5))
 
 library(ggforce)
 (g1 <-eez_fish_all_df %>% 
@@ -130,7 +131,7 @@ library(ggforce)
                     y = Lat,
                     fill = fishing_hours_cat)) +
     geom_sf(data = ne_countries(returnclass = 'sf', scale = 'medium')) +
-    coord_sf(xlim = c(min(eez_fish_guafo_df$Lon), max(eez_fish_guafo_df$Lon-1.2)),
+    coord_sf(xlim = c(min(eez_fish_guafo_df$Lon), max(eez_fish_guafo_df$Lon+0.12)),
              ylim = c(min(eez_fish_guafo_df$Lat), max(eez_fish_guafo_df$Lat))) +
     scale_fill_viridis_d() +
     labs(x="",
