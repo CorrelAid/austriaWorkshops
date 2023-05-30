@@ -56,8 +56,9 @@ longline <- get_vessel_info(
 # exactly 10000 vessels by coincidence?
 
 
-## paste all vessel ids together
-longline_ids <- paste0(longline$id[1:200], collapse = ',')
+
+## paste vessel ids together
+longline_ids <- paste0(longline$id[1:5100], collapse = ',')
 
 
 
@@ -72,6 +73,11 @@ df_longline_fishing <- get_event(event_type='fishing',
 
 
 
+
+# save dataframe to save time later
+saveRDS(df_longline_fishing, file = "my_data.rds")
+# load it
+df_longline_fishing <- readRDS(file = "my_data.rds")
 
 ## filter out where no flag state information is available
 
@@ -106,6 +112,13 @@ colnames(fished_eezs) <- c("flag", "fished_eez")
 #               key = key) 
 
 
+
+## filter out rows where no fished eez information is available
+
+fished_eezs <- fished_eezs %>%
+  filter(fished_eez != "NULL")
+
+
 ## merge eez id with the name of the flag state  
 df <- fished_eezs %>% select(flag, fished_eez) %>% 
   dplyr::rowwise() %>%
@@ -128,9 +141,6 @@ edgelist_w$Source <- as.character(edgelist_w$Source)
 edgelist_w$Target <- as.character(edgelist_w$Target)
 edgelist_w$Weight <- as.numeric(edgelist_w$Weight)
 
-
-## subset no self-reference (loops)
-# edgelist_w <- subset(edgelist_w, !ifelse(edgelist_w$Source == edgelist_w$Target, TRUE, FALSE))
 
 
 
@@ -157,6 +167,8 @@ nodes$size <- V(net)$degree
 
 el <- data.frame(get.edgelist(net))
 
+
+
 edges <- data.frame(from = el$X1, to = el$X2,
                     
                     # add labels on edges                  
@@ -165,11 +177,13 @@ edges <- data.frame(from = el$X1, to = el$X2,
                     # arrows
                     arrows = c("to"),
                     
-                    color = c("yellow"), 
-                    width = E(net)$Weight)
+                    color = c("blue"), 
+                    width = E(net)$Weight/5)
 
 
+## subset not showing edges for fishing in own eez (loops)
 
+edges <- subset(edges, !ifelse(edges$from == edges$to, TRUE, FALSE))
 
 
 
@@ -184,5 +198,9 @@ plot <- visNetwork(nodes, edges, height = "1000px", width = "100%") %>%
   visEdges(smooth = FALSE) 
 
   
-plot
+
+visSave(plot, file = "plot.html")
+
+
+
 
