@@ -1,24 +1,22 @@
 #
 # This is a Shiny web application. You can run the application by clicking
 # the 'Run App' button above.
-#
-
+rm (list = ls())
+gc()
 library(shiny)
-require(tidyverse)
-require(ggthemes)
+# require(tidyverse)
+# require(ggthemes)
 require(shinythemes)
 library(png)
 library(shinyWidgets)
-library(gfwr)
-library(sf)
-library(rnaturalearth)
-library(rnaturalearthdata)
-library(ggplot2)
-library(leaflet)
+# library(gfwr)
+# library(sf)
+# library(rnaturalearth)
+# library(rnaturalearthdata)
+# library(ggplot2)
+# library(leaflet)
+# library(terra)
 
-
-## api access token to gfw database
-key <- Sys.getenv("GFW_TOKEN")
 
 
 ## background color
@@ -39,10 +37,10 @@ ui <- fluidPage(
              tags$img(src='gfw.png', height='120', width='150'))),
      
       mainPanel(navbarPage(title = "",
-                           tabPanel( "Map_leaflet", 
-                                     leafletOutput(outputId = 'map1')),
                            tabPanel( "Map_sf", 
-                                     plotOutput(outputId = 'map2'))
+                                     plotOutput(outputId = 'map')),
+                           tabPanel("Longline network",
+                                    includeHTML("plot.html"))
                                         ))
     
     
@@ -53,18 +51,12 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
 
-  output$map1 <- renderLeaflet({
-    leaflet() %>%
-      addTiles() 
-  })
-  output$map2 <- renderPlot({
-    world <- ne_countries(scale = "medium", returnclass = "sf")
-    ggplot(data = world) +
-      geom_sf()
-  })
+  output$map <- renderImage({
+      list(src="guafo.png", height = "800px", width = "1200px", alt = "Fishing efforts (around Guafo island)")
+  }, deleteFile = FALSE)
 
-  
- 
+
+
 }
 
 

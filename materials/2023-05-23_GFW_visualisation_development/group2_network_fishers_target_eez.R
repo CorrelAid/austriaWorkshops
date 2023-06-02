@@ -58,7 +58,7 @@ longline <- get_vessel_info(
 
 
 ## paste vessel ids together
-longline_ids <- paste0(longline$id[1:5100], collapse = ',')
+longline_ids <- paste0(longline$id[1:600], collapse = ',')
 
 
 
@@ -70,6 +70,7 @@ df_longline_fishing <- get_event(event_type='fishing',
                                      end_date = "2022-02-01",
                                      key = key
 )
+
 
 
 

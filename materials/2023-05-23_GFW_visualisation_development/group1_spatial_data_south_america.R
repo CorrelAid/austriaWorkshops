@@ -38,7 +38,6 @@ key <- Sys.getenv("GFW_TOKEN")
 
 
 
-
 # get data for a region
 
 code_eez <- get_region_id(region_name = 'CHL', region_source = 'eez', key = key)
@@ -72,7 +71,6 @@ eez_fish_all_df <- eez_fish_df %>%
   summarize(fishing_hours = sum(`Apparent Fishing hours`, na.rm = T)) 
 
 
-## now we plot this
 
 
 ## now we plot this
@@ -143,6 +141,7 @@ library(ggforce)
           axis.ticks.y=element_blank()  #remove y axis ticks
     )
 )
+
 
 library(patchwork)
 g1 + ggtitle('Fishing Hours of the Coast of Chile') +
