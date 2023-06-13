@@ -1,0 +1,245 @@
+---
+title: "CorrelAid Quarto Introduction"
+author: "Julian & Simon"
+format: 
+  revealjs:
+    smaller: true
+editor: visual
+---
+
+## What to expect ...
+
+::: columns
+::: {.column width="60%"}
+![](figures/VeeklyVisualizationsPoster3.png)
+:::
+
+::: {.column width="40%"}
+:::
+:::
+
+## What to expect ...
+
+::: columns
+::: {.column width="60%"}
+![](figures/VeeklyVisualizationsPoster1.png)
+:::
+
+::: {.column width="40%"}
+:::
+:::
+
+## What to expect ...
+
+::: columns
+::: {.column width="60%"}
+![](figures/VeeklyVisualizationsPoster2.png)
+:::
+
+::: {.column width="40%"}
+:::
+:::
+
+## What to expect ...
+
+::: columns
+::: {.column width="60%"}
+![](figures/VeeklyVisualizationsPoster3.png)
+:::
+
+::: {.column width="40%" align="center"}
+**Today 30/45min**\
+- 50% Theory\
+- 50% Pratice\
+- Questions?
+
+**20 June 2023**\
+- Quarto and Python
+
+**27 June 2023**\
+- Hands on Workshop\
+- Please answer our survey!
+:::
+:::
+
+## About us ...
+
+::: columns
+::: column
+![](figures/js2c.png)
+:::
+
+::: column
+![](figures/ibk.png){.fragment}
+
+![](figures/sowi.webp){.fragment}
+
+![](figures/logo.png){.fragment}
+:::
+:::
+
+## Lets talk about Quarto ...
+
+**WHAT?**\
+"An open-source scientific and technical publishing system"
+
+[**WHEN?**\
+"Analyze. Share. Reproduce. You have a story to tell with data - tell it with Quarto"]{.fragment}[^1]
+
+[^1]: [<https://quarto.org>]{.fragment}
+
+[**SOME EXAMPLES**\
+<https://quarto.org/docs/gallery/>]{.fragment}
+
+## Lets talk about Quarto ...
+
+**WHY?**\
+![](figures/universe.png)[^2]
+
+[^2]: https://jthomasmock.github.io/quarto-2hr-webinar/
+
+## Quarto is ...
+
+[... CLI (command line interface)]{.fragment}\
+[... renders plain text formats (.qmd, .rmd, .md) to static reports, books, websites, presentations and more]{.fragment}
+
+[**Why Quarto instead of RMarkdown?**]{.fragment}\
+[- shared syntax\
+- free editor choice and preferred data science language\
+- easy transfer of .rmd files\
+- more features and better accessibility]{.fragment}
+
+## RStudio
+
+![](figures/ide.png)
+
+## .qmd files ...
+
+... are plain text files with
+
+![](figures/qmd.png)
+
+## YAML
+
+-   often used for configuration files and data exchange between programming languages
+-   YAML aims to be simple to read and write for both humans and machines
+-   (more themes [here](https://quarto.org/docs/output-formats/html-themes.html))
+![](figures/yaml.png)
+
+## Markdown
+
+-   plain text input
+-   literate programming: Writing out the program logic in a human language with included (separated by a primitive markup) code snippets and macros (i.e., title-like phrases that describe human abstractions) - [Wikipedia](https://en.wikipedia.org/wiki/Literate_programming)
+-   in short: the text body of the document
+![](figures/markdown.png)
+
+## Code
+
+-   actual code chunks (R, Python, Julia, ...)
+-   along with defined options that define
+-   the parts of input and output to be printed in the compiled document,
+-   output location
+-   figure captions
+-   ...
+![](figures/code.png)
+
+## `Divs` and `Spans`
+
+`<div>` and `<span>` are two commonly used elements that provide structural and styling capabilities for web page content.
+
+-   `div` is used to organize elements, i.e., a whole page, or paragraphs. For example, we could divide a paragraph into columns. 
+-   `span` is used to apply styling or manipulate specific portions of text within a larger block of content. Useful if we want to [highlight]{style="color:red;"} specific elements.
+
+## `Divs`: columns
+
+```
+::: layout{layout-ncol=2}
+![](map1.png)
+
+![](map2.png)
+:::
+```
+:::: columns
+::: column
+![](figures/map1.png)
+:::
+::: column
+![](figures/map2.png)
+:::
+::::
+
+## `Divs`: Callout Blocks
+
+```
+:::{.callout-tip}
+There are five types of callouts: `tip`, `note`, `warning`, `caution`, and `important`.
+:::
+```
+
+:::{.callout-tip}
+There are five types of callouts: `tip`, `note`, `warning`, `caution`, and `important`.
+:::
+
+:::{.callout-warning}
+Use every one of them with caution!
+:::
+
+:::{.callout-note}
+But they are quite useful.
+:::
+
+## `Divs`: Panel Tabsets
+
+![](figures/panels.png)
+
+## `Divs`: Panel Tabsets
+
+```{r}
+#| echo: false
+
+library(ggplot2)
+# load data
+url <- 
+  "https://raw.githubusercontent.com/CorrelAid/austriaWorkshops/main/materials/2023-05-09_ggplot2_spatial/data/unemployment_austria.csv"
+data <- read.csv(url, header = TRUE, sep = ";", dec = ",")
+
+# rename variables
+names(data) <- c("states", "unemployed", "unemployed.men", "unemployed.women", "rate", "rate.men", "rate.women")
+```
+
+:::{.panel-tabset}
+## Code 
+```{r}
+#| echo: fenced
+#| eval: false
+ggplot(data = data, aes(x = states, y = rate, fill = rate)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 30,
+                      vjust = 1, hjust = 1))
+```
+## Output
+```{r}
+#| echo: false
+#| eval: true
+ggplot(data = data, aes(x = states, y = rate, fill = rate)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 30,
+                      vjust = 1, hjust = 1))
+```
+:::
+
+## `Span` 
+
+-   used to [highlight]{style="color:red;"} specific elements within a text. 
+-   apply `[span]{.class}` to a specific item.
+-   examples include footnotes^[That are used like `this^[footnote]`]
+-   or fragmented text [that appears one after another.]{.fragment} [And another.]{.fragment}
+![](figures/fragment.png)
+
+## Just a peak into the Quarto universe
+
+-   Learn more about Quarto on their [website](https://quarto.org/), or the [Getting started guide](https://jthomasmock.github.io/quarto-2hr-webinar/) by Tom Mock on GitHub and Youtube (2:30 hrs).
+-   or in our follow-up sessions in the next two weeks.
+
+![](figures/giphy.gif)
+

@@ -1,0 +1,69 @@
+---
+title: "Austria map"
+format: 
+  html:
+    theme: litera
+editor: visual
+---
+
+## Quarto
+
+Check out the [Quarto] website for for infos.
+
+## Running Code
+
+This is a code chunk:
+
+```{r}
+# load data
+url <- 
+  "https://raw.githubusercontent.com/CorrelAid/austriaWorkshops/main/materials/2023-05-09_ggplot2_spatial/data/unemployment_austria.csv"
+data <- read.csv(url, header = TRUE, sep = ";", dec = ",")
+
+# rename variables
+names(data) <- c("states", "unemployed", "unemployed.men", "unemployed.women", "rate", "rate.men", "rate.women")
+
+# view data 
+head(data)
+
+# plot
+library(ggplot2)
+data$states <- factor(data$states, 
+                      levels = data$states)
+ggplot(data = data, aes(x = states, y = rate)) +
+  geom_col()
+```
+
+## `Divs`: Panel Tabsets
+
+:::{.panel-tabset}
+
+## Code 
+```{r}
+#| echo: fenced
+#| eval: false
+ggplot(data = data, aes(x = states, y = rate, 
+                        fill = rate)) +
+  geom_bar(stat = "identity") +
+  theme(
+    axis.text.x = element_text(angle = 30,
+                               vjust = 1,
+                               hjust = 1)
+  )
+```
+
+## Output
+```{r}
+#| echo: false
+#| eval: true
+ggplot(data = data, aes(x = states, y = rate, 
+                        fill = rate)) +
+  geom_bar(stat = "identity") +
+  theme(
+    axis.text.x = element_text(angle = 30,
+                               vjust = 1,
+                               hjust = 1)
+  )
+```
+
+:::
