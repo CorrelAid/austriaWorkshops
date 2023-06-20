@@ -112,7 +112,7 @@ Julian Granna, MSc.
 
 # read data from github
 url <- 
-  "https://raw.githubusercontent.com/CorrelAid/austriaWorkshops/main/ggplot2_2/data/unemployment_austria.csv"
+  "https://raw.githubusercontent.com/CorrelAid/austriaWorkshops/main/materials/2022-09-27%20ggplot2_spatial/data/unemployment_austria.csv"
 data <- read.csv(url, header = TRUE, sep = ";", dec = ",")
 names(data)
 ```
